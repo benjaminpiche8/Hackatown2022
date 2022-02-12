@@ -14,7 +14,6 @@ def build_api_url(num_days) :
     days = 'days=' + str(num_days)
     aqi = 'aqi=no'
     alerts = 'alerts=yes'
-    
     return base_url + request + '?' + api_key + date + '&' + query + '&' + days + '&' + aqi + '&' + alerts
 
 def call_api(api_url) :
@@ -24,7 +23,7 @@ def call_api(api_url) :
 def write_json(response) :
     json_data = json.loads(response.text)
     for key in json_data.keys() :
-        with open('database_' + key + '.json', 'w') as outfile :
+        with open('database\database_' + key + '.json', 'w') as outfile :
             json.dump(json_data[key], outfile)
 
 if __name__ == "__main__" :
