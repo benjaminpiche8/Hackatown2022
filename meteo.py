@@ -8,9 +8,12 @@ def get_current_icon() :
     with open('database\database_current.json', 'r') as outfile :
         data = json.load(outfile)
         url = data['condition']['icon']
-        image = Image.open(requests.get('https:' + url, stream = True).raw)
-        image.show()
-        return image
+        elements = url.split('/')
+        path = 'icons/' + elements[3] + '/' + elements[4] + '/' + elements[5] + '/' + elements[6]
+        return path
+        #image = Image.open(requests.get('https:' + url, stream = True).raw)
+        #image.show()
+        #return image
 
 def get_current_condition() :
     with open('database\database_current.json', 'r') as outfile :
@@ -44,9 +47,10 @@ def get_daily_forecast_icon(date) : # parameter format string 'XXXX-XX-XX'
             for day in sublist :
                 if day['date'] == date :
                     url = day['day']['condition']['icon']
-                    image = Image.open(requests.get('https:' + url, stream = True).raw)
-                    image.show()
-                    return image
+                    elements = url.split('/')
+                    path = 'icons/' + elements[3] + '/' + elements[4] + '/' + elements[5] + '/' + elements[6]
+                    return path
+                    
 
 def get_daily_forecast_condition(date) : # parameter format string 'XXXX-XX-XX'
     with open('database\database_forecast.json', 'r') as outfile :
