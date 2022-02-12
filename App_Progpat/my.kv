@@ -1,5 +1,15 @@
 <HomePage>:
 
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height,
+
+        pos_hint: {"x":0.1, "y":0.8}
+        size_hint: 0.35, 0.15
+
+        Image:
+            source: 'icons/weather/64x64/day/113.png'
+            keep_ratio: True
     Button:
         pos_hint:{"x":0,"y":0}
         size_hint: 0.25, 0.15
@@ -111,6 +121,7 @@
 
 
 <FullOutfitPage>:
+
     Button:
         pos_hint:{"x":0,"y":0}
         size_hint: 0.25, 0.15

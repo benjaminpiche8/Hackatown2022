@@ -1,13 +1,19 @@
 # main.py
-
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from kivy.uix.image import Image
+from kivy.core.window import Window
 #from codefinaltim.App_Progpat.database import DataBase # USEFUL FOR DATABASE **************************************
 
+import sys, os, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+import meteo as mt
 
 #WINDOW  SUR  LA PAGE PRINCIPALE
 class HomePage(Screen):  #self.reset() may be important
@@ -53,6 +59,8 @@ class FullOutfitPage(Screen):
 
     def meteoBtn(self):
         screenManager.current = "meteo"
+    def build(self):
+        Window.clearcolor(1,1,1,1)
 
     
 
@@ -87,6 +95,8 @@ class MyMainApp(App):
 
 if __name__ == "__main__":
     MyMainApp().run()
+    print(mt.get_current_condition())
+    print(mt.get_current_icon())
 
 
 
