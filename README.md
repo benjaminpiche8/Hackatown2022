@@ -1,3 +1,2 @@
 # Hackatown 2022
-Projet de la ProgPatrouille
-Application "outfit picker" basé sur la météo
+Projet de la ProgPatrouille : application "outfit picker" basée sur la météo
