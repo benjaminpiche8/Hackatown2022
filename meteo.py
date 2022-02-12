@@ -17,7 +17,7 @@ def get_current_condition() :
         data = json.load(outfile)
         return data['condition']['text']
 
-def get_current_raw_temp(system) :
+def get_current_raw_temp(system) : # parameter format string 'c' or 'f'
     with open('database\database_current.json', 'r') as outfile :
         data = json.load(outfile)
         if system == 'c' :
@@ -25,7 +25,7 @@ def get_current_raw_temp(system) :
         else :
             return data['temp_f']
 
-def get_current_feelslike_temp(system) :
+def get_current_feelslike_temp(system) : # parameter format string 'c' or 'f'
     with open('database\database_current.json', 'r') as outfile :
         data = json.load(outfile)
         if system == 'c' :
@@ -34,22 +34,67 @@ def get_current_feelslike_temp(system) :
             return data['feelslike_f']
 
 
-### Forecast conditions ###
+### Daily forecast conditions ###
 
-def get_forecast_icon() :
+def get_daily_forecast_icon(date) : # parameter format string 'XXXX-XX-XX'
     with open('database\database_forecast.json', 'r') as outfile :
         data = json.load(outfile)
         values = list(data.values())
         for sublist in values :
-            for dict in sublist :
-                print(dict, '\n', '\n')
-        #    print(date, '\n', '\n')
-        #print(type(items), '\n')
-        #url = data['condition']['icon']
-        #image = Image.open(requests.get('https:' + url, stream = True).raw)
-        #image.show()
-        #return image
+            for day in sublist :
+                if day['date'] == date :
+                    url = day['day']['condition']['icon']
+                    image = Image.open(requests.get('https:' + url, stream = True).raw)
+                    image.show()
+                    return image
 
-if __name__ == "__main__" :
-    # print(type(get_forecast_icon()), get_forecast_icon())
-    get_forecast_icon()
+def get_daily_forecast_condition(date) : # parameter format string 'XXXX-XX-XX'
+    with open('database\database_forecast.json', 'r') as outfile :
+        data = json.load(outfile)
+        values = list(data.values())
+        for sublist in values :
+            for day in sublist :
+                if day['date'] == date :
+                    return day['day']['condition']['text']
+
+def get_daily_forecast_raw_temp(system, metric, date) : # parameter format string 'c' or 'f', string 'max' or 'min' and string 'XXXX-XX-XX'
+    with open('database\database_forecast.json', 'r') as outfile :
+        data = json.load(outfile)
+        values = list(data.values())
+        for sublist in values :
+            for day in sublist :
+                if day['date'] == date :
+                    if system == 'c' and metric == 'max' :
+                        return day['day']['maxtemp_c']
+                    elif system == 'c' and metric == 'min' :
+                        return day['day']['mintemp_c']
+                    elif system == 'f' and metric == 'max' :
+                        return day['day']['maxtemp_f']
+                    else :
+                        return day['day']['mintemp_f']
+
+def will_it_snow(date) : # parameter format string 'XXXX-XX-XX'
+    with open('database\database_forecast.json', 'r') as outfile :
+        data = json.load(outfile)
+        values = list(data.values())
+        for sublist in values :
+            for day in sublist :
+                if day['date'] == date :
+                    if day['day']['daily_will_it_snow'] == 0 :
+                        return False
+                    else :
+                        return True
+
+def will_it_rain(date) : # parameter format string 'XXXX-XX-XX'
+    with open('database\database_forecast.json', 'r') as outfile :
+        data = json.load(outfile)
+        values = list(data.values())
+        for sublist in values :
+            for day in sublist :
+                if day['date'] == date :
+                    if day['day']['daily_will_it_rain'] == 0 :
+                        return False
+                    else :
+                        return True
+
+# if __name__ == "__main__" :
