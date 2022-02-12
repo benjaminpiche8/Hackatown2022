@@ -21,6 +21,9 @@ cucumber-report.json
 **/.vscode-smoke/**
 **/.venv*/
 venv/
+Lib/
+Include/
+Scripts/
 port.txt
 precommit.hook
 pythonFiles/lib/**
@@ -43,3 +46,4 @@ pydevd*.log
 nodeLanguageServer/**
 nodeLanguageServer.*/**
 dist/**
+pyvenv.cfg
