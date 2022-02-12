@@ -1,12 +1,16 @@
 import requests
 import json
+import unicodedata
 
-def build_api_url(location, num_days) :
+from get_location import get_city_location
+
+def build_api_url(num_days) :
     base_url = 'https://api.weatherapi.com/v1'
     request = '/forecast.json'
-    api_key = 'key=586e03d395324a3583813301'  
+    api_key = 'key=586e03d395324a3583813301'
     date = '221202' # will it change?
-    query = 'q=' + location  # add getLocation function
+    location = str(unicodedata.normalize('NFKD', get_city_location()).encode('ascii', 'ignore')).split("'")[1]
+    query = 'q=' + location
     days = 'days=' + str(num_days)
     aqi = 'aqi=no'
     alerts = 'alerts=yes'
@@ -24,5 +28,5 @@ def write_json(response) :
             json.dump(json_data[key], outfile)
 
 if __name__ == "__main__" :
-    data = call_api(build_api_url('Montreal', 3))
-    write_json(data)
+    data = call_api(build_api_url(3))
+    write_json(data)    
