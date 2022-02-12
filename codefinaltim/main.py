@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
-from database import DataBase
+from codefinaltim.App_Progpat.database import DataBase
 
 
 class CreateAccountWindow(Screen):
@@ -112,9 +112,3 @@ class MyMainApp(App):
 
 if __name__ == "__main__":
     MyMainApp().run()
-
-
-
-
-
-
