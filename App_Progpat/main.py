@@ -9,97 +9,54 @@ from kivy.uix.label import Label
 #from codefinaltim.App_Progpat.database import DataBase # USEFUL FOR DATABASE **************************************
 
 
-# class CreateAccountWindow(Screen):
-#     namee = ObjectProperty(None)
-#     email = ObjectProperty(None)
-#     password = ObjectProperty(None)
-
-#     def submit(self):
-#         if self.namee.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
-#             if self.password != "":
-#                 db.add_user(self.email.text, self.password.text, self.namee.text)
-
-#                 self.reset()
-
-#                 secreenManager.current = "login"
-#             else:
-#                 invalidForm()
-#         else:
-#             invalidForm()
-
-#     def login(self):
-#         self.reset()
-#         secreenManager.current = "login"
-
-#     def reset(self):
-#         self.email.text = ""
-#         self.password.text = ""
-#         self.namee.text = ""
-
-
-# class LoginWindow(Screen):
-#     email = ObjectProperty(None)
-#     password = ObjectProperty(None)
-
-#     def loginBtn(self):
-#         if db.validate(self.email.text, self.password.text):
-#             MainWindow.current = self.email.text
-#             self.reset()
-#             secreenManager.current = "main"
-#         else:
-#             invalidLogin()
-
-#     def createBtn(self):
-#         self.reset()
-#         secreenManager.current = "create" #fonction pour changer d'un window à l'autre*****************************************************************
-
-#     def reset(self):
-#         self.email.text = "" 
-#         self.password.text = ""
-
-
-
-# class MainWindow(Screen):
-#     n = ObjectProperty(None)
-#     created = ObjectProperty(None)
-#     email = ObjectProperty(None)
-#     current = ""
-
-#     def logOut(self):
-#         secreenManager.current = "login"
-
-#     def on_enter(self, *args):
-#         password, name, created = db.get_user(self.current)
-#         self.n.text = "Account Name: " + name
-#         self.email.text = "Email: " + self.current
-#         self.created.text = "Created On: " + created
-
-class HomePage(Screen):
+#WINDOW  SUR  LA PAGE PRINCIPALE
+class HomePage(Screen):  #self.reset() may be important
     def settingsBtn(self):
-        screenManager.current = "create"    
+        screenManager.current = "settings"    
 
     def meteoBtn(self):
-        screenManager.current = "main"
+        screenManager.current = "meteo"
 
     def outfitBtn(self):
-        screenManager.current = "create"     
+        screenManager.current = "outfit"     
 
 
-
+# WINDOW SUR LA PAGE DE SETTINGS
 class SettingsPage(Screen):
-    pass
+    def homeBtn(self):
+        screenManager.current = "main"    
 
+    def meteoBtn(self):
+        screenManager.current = "meteo"
+
+    def outfitBtn(self):
+        screenManager.current = "outfit"  
+
+#WINDOW SUR LA PAGE DE MÉTÉO COMPLÈTE
 class FullMeteoPage(Screen):
-    pass
+    def homeBtn(self):
+        screenManager.current = "main"
 
+    def settingsBtn(self):
+        screenManager.current = "settings"    
+    
+    def outfitBtn(self):
+        screenManager.current = "outfit"  
+
+#WINDOW SUR LA PAGE DE OUTFIT
 class FullOutfitPage(Screen):
-    pass
+    def homeBtn(self):
+        screenManager.current = "main"  
 
+    def settingsBtn(self):
+        screenManager.current = "settings"    
 
+    def meteoBtn(self):
+        screenManager.current = "meteo"
 
+    
 
-
-class WindowManager(ScreenManager): #S'OCCUPE DE GÉRER LES MULTIPLES WINDOW (LES CHANGER QUAND NÉCÉSSAIRE)
+class WindowManager(ScreenManager):             #S'OCCUPE DE GÉRER LES MULTIPLES WINDOW (LES CHANGER QUAND NÉCÉSSAIRE)
     pass
 
 
@@ -114,7 +71,7 @@ def invalidLogin(): #AS TO BE CALLED SOMEWHERE TO BE USEFUL**** IP ADRESS
 kv = Builder.load_file("my.kv")
 
 screenManager = WindowManager()
-#db = DataBase("users.txt")                 #USEFULL FOR DATABASE PURPOSES !
+#db = DataBase("users.txt")                     #USEFULL FOR DATABASE PURPOSES !
 
 screens = [HomePage(name="main"), SettingsPage(name="settings"), FullMeteoPage(name="meteo"), FullOutfitPage(name="outfit")]
 for screen in screens:
