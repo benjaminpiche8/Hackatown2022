@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+
 #from codefinaltim.App_Progpat.database import DataBase # USEFUL FOR DATABASE **************************************
 
 
@@ -32,8 +33,14 @@ class SettingsPage(Screen):
     def outfitBtn(self):
         screenManager.current = "outfit"  
 
+
 #WINDOW SUR LA PAGE DE MÉTÉO COMPLÈTE
 class FullMeteoPage(Screen):
+    
+    #condition = ObjectProperty(None)
+    condition = meteo.get_current_condition()
+    
+
     def homeBtn(self):
         screenManager.current = "main"
 
@@ -42,6 +49,7 @@ class FullMeteoPage(Screen):
     
     def outfitBtn(self):
         screenManager.current = "outfit"  
+
 
 #WINDOW SUR LA PAGE DE OUTFIT
 class FullOutfitPage(Screen):
