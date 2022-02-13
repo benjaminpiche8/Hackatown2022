@@ -258,11 +258,22 @@
             Label:
                 text: "Recommended accessory : " + root.__recommended_accessory__
                 font_size: (self.width  + self.height ) / 30
-
         BoxLayout:
             orientation: "vertical"
             size: (root.width/2), (root.height/2)
             pos : (root.width/2.1), (root.height/1.5)
+
+            pos_hint: {"x":0.7, "y":0.6}
+            #size_hint: 0.35, 0.15
+            size_hint: 0.5, 0.5
+            Image:
+                source: root.__icon_accessory__
+                keep_ratio: True
+
+        BoxLayout:
+            orientation: "vertical"
+            size: (root.width/2), (root.height/2)
+            pos : (root.width/2.1), (root.height/2.2)
 
             pos_hint: {"x":0.7, "y":0.6}
             #size_hint: 0.35, 0.15
@@ -275,7 +286,7 @@
         BoxLayout:
             orientation: "vertical"
             size: (root.width/2), (root.height/2)
-            pos : (root.width/2.1), (root.height/2.2)
+            pos : (root.width/2.1), (root.height/4.4)
 
             pos_hint: {"x":0.7, "y":0.6}
             #size_hint: 0.35, 0.15
@@ -287,7 +298,7 @@
         BoxLayout:
             orientation: "vertical"
             size: (root.width/2), (root.height/2)
-            pos : (root.width/2.1), (root.height/4.4)
+            pos : (root.width/2.1), (root.height/40)
 
             pos_hint: {"x":0.7, "y":0.6}
             #size_hint: 0.35, 0.15
@@ -296,17 +307,7 @@
                 source: root.__icon_footwear__
                 keep_ratio: True
 
-        BoxLayout:
-            orientation: "vertical"
-            size: (root.width/2), (root.height/2)
-            pos : (root.width/2.1), (root.height/40)
-
-            pos_hint: {"x":0.7, "y":0.6}
-            #size_hint: 0.35, 0.15
-            size_hint: 0.5, 0.5
-            Image:
-                source: root.__icon_accessory__
-                keep_ratio: True
+        
 
 
 
