@@ -60,7 +60,9 @@ class FullMeteoPage(Screen):
     condTodMin =  str(mt.get_daily_forecast_raw_temp('c','min', dateToday))
     condTodMax =  str(mt.get_daily_forecast_raw_temp('c','max', dateToday))
     condIcon = mt.get_daily_forecast_icon(dateToday)
-    CondLive = mt.get_current_feelslike_temp('c')
+    CondLive = str(mt.get_current_feelslike_temp('c'))
+
+    #CondNow = mt.get_current_feelslike_temp('c','min', dateToday)
 
     condTomMin = str(mt.get_daily_forecast_raw_temp('c','min', dateTomorrow ))
     condTomMax = str(mt.get_daily_forecast_raw_temp('c','max', dateTomorrow ))
