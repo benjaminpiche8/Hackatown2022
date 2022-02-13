@@ -1,15 +1,5 @@
 <HomePage>:
 
-    BoxLayout:
-        orientation: "vertical"
-        size: root.width, root.height,
-
-        pos_hint: {"x":0.1, "y":0.8}
-        size_hint: 0.35, 0.15
-
-        Image:
-            source: 'icons/weather/64x64/day/113.png'
-            keep_ratio: True
     Button:
         pos_hint:{"x":0,"y":0}
         size_hint: 0.25, 0.15
@@ -210,37 +200,70 @@
 
 <FullOutfitPage>:
 
-    Button:
-        pos_hint:{"x":0,"y":0}
-        size_hint: 0.25, 0.15
-        font_size: (self.width  + self.height ) / 15
-        text: "HomePage"
-        on_release:
-            root.manager.transition.direction = "right"
-            root.homeBtn()
-
-    Button:
-        pos_hint:{"x":0.75,"y":0}
-        size_hint: 0.25, 0.15
-        font_size: (self.width  + self.height ) / 15
-        text: "SettingsPage"
-        on_release:
-            root.manager.transition.direction = "left"
-            root.settingsBtn()
+    GridLayout:
+        
+        GridLayout:
+            cols:4
+            size: root.width, (root.height/6.66)
+            pos:0,0
             
-    Button:
-        pos_hint:{"x":0.25,"y":0}
-        size_hint: 0.25, 0.15
-        font_size: (self.width  + self.height ) / 15
-        text: "Météo"
-        on_release:
-            root.manager.transition.direction = "right"
-            root.meteoBtn()
+            Button:
+                font_size: (self.width  + self.height ) / 15
+                text: "HomePage"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.homeBtn()
 
-    Button:
-        pos_hint:{"x":0.5,"y":0}
-        size_hint: 0.25, 0.15
-        font_size: (self.width  + self.height ) / 15
-        text: "Outfit"
+            Button:
+                font_size: (self.width  + self.height ) / 15
+                text: "Météo"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.meteoBtn()
+
+            Button:
+                font_size: (self.width  + self.height ) / 15
+                text: "Outfit"
+
+            Button:
+                font_size: (self.width  + self.height ) / 15
+                text: "SettingsPage"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.settingsBtn()
+
+        GridLayout:
+            cols:1
+            size: (root.width/2), (root.height/1.1)
+            pos: 0,(root.height/6.66)
+
+            Label:
+                text: "Recommended top : "
+                font_size: (self.width  + self.height ) / 30
+
+            Label:
+                text: "2 : "
+                font_size: (self.width  + self.height ) / 30
+            
+            Label:
+                text: "3 : "
+                font_size: (self.width  + self.height ) / 30
+            
+            Label:
+                text: "4 : "
+                font_size: (self.width  + self.height ) / 30
+
+        #BoxLayout:
+            #orientation: "vertical"
+            #size: root.width, root.height,
+
+            #pos_hint: {"x":0.1, "y":0.8}
+            #size_hint: 0.35, 0.15
+
+            #Image:
+                #source: root.__icon__
+                #keep_ratio: True
+
+
 
    
