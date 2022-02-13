@@ -20,18 +20,14 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 import meteo as mt
+import get_api_data as api
 import outfit as of
-
-# class MyGrid(GridLayout):
-#     def __init__(self, **kwargs):
-#         super(MyGrid, self).__init__(**kwargs)
-#         self.icon = mt.get_current_icon()
-
-
 
 #WINDOW  SUR  LA PAGE PRINCIPALE
 class HomePage(Screen):  #self.reset() may be important
     
+    icone = of.get_clothing_icon("umbrella")
+
     def settingsBtn(self):
         screenManager.current = "settings"    
 
@@ -144,6 +140,7 @@ screenManager.current = "main"
 
 class MyMainApp(App):
     def build(self):
+        api.write_json(api.call_api(api.build_api_url(3)))
         return screenManager
 
 

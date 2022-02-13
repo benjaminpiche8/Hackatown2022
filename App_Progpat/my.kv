@@ -1,5 +1,31 @@
 <HomePage>:
 
+    canvas.before:
+        Color: 
+            rgba: (0/240,240/240,0/240,0.9)
+        Rectangle:
+            pos : self.pos
+            size: self.size
+
+    Label:
+        text: "PROGPATROUILLE "
+        color: 0,0,0,1
+        font_size: (self.width + self.height) / 9
+        pos_hint: {"x":0.25, "y":0.45}
+        size_hint:0.5,0.5
+
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height,
+
+        pos_hint: {"x":0.0, "y":0.0}
+        size_hint: 1, 1
+
+        Image:
+            source: root.icone
+            
     Button:
         pos_hint:{"x":0,"y":0}
         size_hint: 0.25, 0.15
@@ -36,6 +62,21 @@
 
 
 <SettingsPage>:
+
+
+    canvas.before:
+        Color: 
+            rgba: (100/240,35/240,35/240,0.9)
+        Rectangle:
+            pos : self.pos
+            size: self.size
+
+    Label:
+        text: "SETTINGS "
+        font_size: (self.width + self.height) / 9
+        pos_hint: {"x":0.25, "y":0.3}
+        size_hint:0.5,0.5
+
 
     Button:
         pos_hint:{"x":0,"y":0}
