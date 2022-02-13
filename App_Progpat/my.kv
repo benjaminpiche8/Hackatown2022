@@ -1,5 +1,15 @@
 <HomePage>:
 
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height,
+
+        pos_hint: {"x":0.1, "y":0.8}
+        size_hint: 0.35, 0.15
+
+        Image:
+            source: 'icons/weather/64x64/day/113.png'
+            keep_ratio: True
     Button:
         pos_hint:{"x":0,"y":0}
         size_hint: 0.25, 0.15
@@ -74,14 +84,93 @@
 
 
 <FullMeteoPage>:
-
-    condition : condition
+    canvas.before:
+        Color: 
+            rgba: (177/240,189/240,234/240,0.28)
+        Rectangle:
+            pos : self.pos
+            size: self.size
 
     Label:
-        text:"Email: "
-        font_size: (root.width**2 + root.height**2) / 13**4
-        pos_hint: {"x":0.5, "y":0.5}
+        text: "Todays weather : "
+        font_size: (self.width + self.height) / 9
+        pos_hint: {"x":0.10, "y":0.85}
         size_hint: 0.35, 0.15
+
+    Label:
+        text: root.condLetter
+        font_size:(self.width + self.height) / 9
+        pos_hint: {"x":0.42, "y":0.85}
+        size_hint: 0.35, 0.15
+
+    Label:
+        text: "with  min : " 
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0, "y":0.75}
+        size_hint: 0.35, 0.15
+
+    Label:
+        text: root.condTodMin
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0.15, "y":0.75}
+        size_hint: 0.35, 0.15
+
+    Label:
+        text: "and max : "
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0.30, "y":0.75}
+        size_hint: 0.35, 0.15
+
+    Label:
+        text: root.condTodMax
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0.42, "y":0.75}
+        size_hint: 0.35, 0.15
+        
+
+    Label:
+        text: "Tomorrow : "
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0.0, "y":0.2}
+        size_hint: 0.35, 0.15
+
+    Label:
+        text: root.condTomMin
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0.17, "y":0.2}
+        size_hint: 0.35, 0.15
+
+    Label:
+        text: "to"
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0.25, "y":0.2}
+        size_hint: 0.35, 0.15
+
+
+    Label:
+        text: root.condTomMax
+        font_size: (self.width + self.height) / 11
+        pos_hint: {"x":0.33, "y":0.2}
+        size_hint: 0.35, 0.15
+
+    BoxLayout:
+
+        orientation: "vertical"
+
+        pos_hint: {"x":0.05, "y":0.5}
+
+
+        Image:
+            size_hint_y: None
+            source: root.condIcon
+            size_hint_x: 1
+            allow_stretch: True
+            
+           
+
+    
+
+
     
     Button:
         pos_hint:{"x":0,"y":0}
@@ -120,6 +209,7 @@
 
 
 <FullOutfitPage>:
+
     Button:
         pos_hint:{"x":0,"y":0}
         size_hint: 0.25, 0.15

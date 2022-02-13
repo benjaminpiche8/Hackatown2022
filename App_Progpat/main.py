@@ -1,17 +1,26 @@
 # main.py
-
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
+from kivy.properties import StringProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+import datetime 
 
+from kivy.uix.image import Image
+from kivy.core.window import Window
 #from codefinaltim.App_Progpat.database import DataBase # USEFUL FOR DATABASE **************************************
 
+import sys, os, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+import meteo as mt
 
 #WINDOW  SUR  LA PAGE PRINCIPALE
 class HomePage(Screen):  #self.reset() may be important
+    
     def settingsBtn(self):
         screenManager.current = "settings"    
 
@@ -36,10 +45,23 @@ class SettingsPage(Screen):
 
 #WINDOW SUR LA PAGE DE MÉTÉO COMPLÈTE
 class FullMeteoPage(Screen):
-    
-    #condition = ObjectProperty(None)
-    condition = meteo.get_current_condition()
-    
+
+    dateToday = str(datetime.date.today())
+    dateTomorrow = str(datetime.date.today() + datetime.timedelta(days = 1))
+
+    condLetter = mt.get_current_condition()
+    condTodMin =  str(mt.get_daily_forecast_raw_temp('c','min', dateToday))
+    condTodMax =  str(mt.get_daily_forecast_raw_temp('c','max', dateToday))
+    condIcon = mt.get_daily_forecast_icon(dateToday)
+    CondLive = mt.get_current_feelslike_temp('c')
+
+    condTomMin = str(mt.get_daily_forecast_raw_temp('c','min', dateTomorrow ))
+    condTomMax = str(mt.get_daily_forecast_raw_temp('c','max', dateTomorrow ))
+
+    rain = mt.will_it_rain(dateToday)
+    snow = mt.will_it_snow(dateToday)
+  
+
 
     def homeBtn(self):
         screenManager.current = "main"
@@ -61,6 +83,9 @@ class FullOutfitPage(Screen):
 
     def meteoBtn(self):
         screenManager.current = "meteo"
+
+    def build(self):
+        Window.clearcolor(1,1,1,1)
 
     
 
@@ -95,6 +120,8 @@ class MyMainApp(App):
 
 if __name__ == "__main__":
     MyMainApp().run()
+    print(mt.get_current_condition())
+    print(mt.get_current_icon())
 
 
 
