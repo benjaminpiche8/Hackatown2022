@@ -17,10 +17,14 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 import meteo as mt
+import get_api_data as api
+import outfit as of
 
 #WINDOW  SUR  LA PAGE PRINCIPALE
 class HomePage(Screen):  #self.reset() may be important
     
+    icone = of.get_clothing_icon("umbrella")
+
     def settingsBtn(self):
         screenManager.current = "settings"    
 
@@ -110,11 +114,12 @@ screens = [HomePage(name="main"), SettingsPage(name="settings"), FullMeteoPage(n
 for screen in screens:
     screenManager.add_widget(screen)
 
-screenManager.current = "main"
+screenManager.current = "meteo"
 
 
 class MyMainApp(App):
     def build(self):
+        api.write_json(api.call_api(api.build_api_url(3)))
         return screenManager
 
 
