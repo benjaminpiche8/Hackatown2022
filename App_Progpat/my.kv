@@ -283,7 +283,10 @@
             cols:1
             size: (root.width/2), (root.height/1.1)
             pos: 0,(root.height/6.66)
-
+            Label:
+                text: "Recommended accessory : " + root.__recommended_accessory__
+                font_size: (self.width  + self.height ) / 30
+                
             Label:
                 text: "Recommended top : " + root.__recommended_top__
                 font_size: (self.width  + self.height ) / 30
@@ -296,9 +299,7 @@
                 text: "Recommended footwear : " + root.__recommended_footwear__
                 font_size: (self.width  + self.height ) / 30
             
-            Label:
-                text: "Recommended accessory : " + root.__recommended_accessory__
-                font_size: (self.width  + self.height ) / 30
+
         BoxLayout:
             orientation: "vertical"
             size: (root.width/2), (root.height/2)
