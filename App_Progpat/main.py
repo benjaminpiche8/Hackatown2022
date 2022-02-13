@@ -7,6 +7,9 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.core.window import Window
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.widget import Widget
+import datetime
 #from codefinaltim.App_Progpat.database import DataBase # USEFUL FOR DATABASE **************************************
 
 import sys, os, inspect
@@ -14,6 +17,14 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 import meteo as mt
+import outfit as of
+
+# class MyGrid(GridLayout):
+#     def __init__(self, **kwargs):
+#         super(MyGrid, self).__init__(**kwargs)
+#         self.icon = mt.get_current_icon()
+
+
 
 #WINDOW  SUR  LA PAGE PRINCIPALE
 class HomePage(Screen):  #self.reset() may be important
@@ -30,7 +41,7 @@ class HomePage(Screen):  #self.reset() may be important
 # WINDOW SUR LA PAGE DE SETTINGS
 class SettingsPage(Screen):
     def homeBtn(self):
-        screenManager.current = "main"    
+        screenManager.current = "main"
 
     def meteoBtn(self):
         screenManager.current = "meteo"
@@ -51,6 +62,15 @@ class FullMeteoPage(Screen):
 
 #WINDOW SUR LA PAGE DE OUTFIT
 class FullOutfitPage(Screen):
+    dateToday = str(datetime.date.today())
+    dateTomorrow = str(datetime.date.today() + datetime.timedelta(days = 1))
+    __icon__ = mt.get_daily_forecast_icon(dateToday)
+    __recommended_top__ = of.short_term_recommandation_top()
+    #__recommended_bottom__ = of.short_term_recommandation_bottom('m')
+    #__recommended_footwear__ = 
+
+
+
     def homeBtn(self):
         screenManager.current = "main"  
 
@@ -63,6 +83,10 @@ class FullOutfitPage(Screen):
         Window.clearcolor(1,1,1,1)
 
     
+   # def on_enter(self):
+    #    App.GetIcon().icon =  mt.get_current_condition()
+class MyGrid(Widget):
+    pass
 
 class WindowManager(ScreenManager):             #S'OCCUPE DE GÉRER LES MULTIPLES WINDOW (LES CHANGER QUAND NÉCÉSSAIRE)
     pass
