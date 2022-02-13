@@ -36,6 +36,11 @@ def get_current_feelslike_temp(system) : # parameter format string 'c' or 'f'
         else :
             return data['feelslike_f']
 
+def get_current_precip() :
+    with open('database\database_current.json', 'r') as outfile :
+        data = json.load(outfile)
+        return data['precip_mm']
+
 
 ### Daily forecast conditions ###
 
