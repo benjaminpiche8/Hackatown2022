@@ -11,18 +11,28 @@ def short_term_recommandation_top(sex = 'm') :
     possibilities_women = []
 
     if c_raw_temp < -5 :
-        possibilities_men.append('long sleeves', 'hoodie', 'winter coat')
-        possibilities_women.append('long sleeves', 'hoodie', 'light coat')
+        items_men = ['long sleeves', 'hoodie', 'winter coat']
+        items_women = ['long sleeves', 'hoodie', 'light coat']
+        for item in items_men :
+            possibilities_men.append(item)
+        for item in items_women :
+            possibilities_women.append(item)
 
     if -5 <= c_raw_temp < 15 :
-        possibilities_men.append('long sleeves', 'hoodie', 'light coat')
-        possibilities_women.append('long sleeves', 'hoodie', 'light coat')
+        items_men = ['long sleeves', 'hoodie', 'light coat']
+        items_women = ['long sleeves', 'hoodie', 'light coat']
+        for item in items_men :
+            possibilities_men.append(item)
+        for item in items_women :
+            possibilities_women.append(item)
 
     if c_raw_temp >= 15 and sex == 'm':
         possibilities_men.append('t-shirt')
 
     if c_raw_temp >= 15 and sex == 'w':
-        possibilities_women.append('t-shirt', 'dress')
+        items_women = ['t-shirt', 'dress']
+        for item in items_women :
+            possibilities_women.append(item)
 
     if c_precip > 0 :
         possibilities_men.append('rain coat')
@@ -47,10 +57,14 @@ def short_term_recommandation_bottom(sex = 'm') :
         possibilities_men.append('shorts')
 
     if c_raw_temp < 15 and sex == 'w' :
-        possibilities_women.append('pants', 'leggings')
-    
+        items_women = ['pants', 'leggings']
+        for item in items_women :
+            possibilities_women.append(item)
+
     if c_raw_temp >= 15 and sex == 'w' :
-        possibilities_women.append('shorts', 'skirt')
+        items_women = ['shorts', 'skirt']
+        for item in items_women :
+            possibilities_women.append(item)
 
     if sex == 'm' :
         return random.choice(possibilities_men)
@@ -73,10 +87,14 @@ def short_term_recommandation_footwear(sex = 'm') :
         possibilities_women.append('casual shoes')
 
     if c_raw_temp >= 15 and sex == 'm' :
-        possibilities_men.append('casual shoes', 'running shoes')
+        items_men = ['casual shoes', 'running shoes']
+        for item in items_men :
+            possibilities_men.append(item)        
     
     if c_raw_temp >= 15 and sex == 'w' :
-        possibilities_women.append('casual shoes', 'running shoes', 'heels')
+        items_women = ['casual shoes', 'running shoes', 'heels']
+        for item in items_women :
+            possibilities_women.append(item)
 
     if sex == 'm' :
         return random.choice(possibilities_men)
@@ -91,9 +109,13 @@ def short_term_recommandation_accessory() :
     possibilities = []
 
     if c_raw_temp < 0 :
-        possibilities.append('hat', 'scarf', 'gloves')
-    if c_raw_temp >= 0 :
+        items = ['hat', 'scarf', 'gloves']
+        for item in items :
+            possibilities.append(item)
+
+    else :
         possibilities.append('cap')
+
     if c_precip == True :
         possibilities.append('umbrella')
 
