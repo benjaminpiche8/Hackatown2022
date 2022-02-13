@@ -135,7 +135,7 @@ screens = [HomePage(name="main"), SettingsPage(name="settings"), FullMeteoPage(n
 for screen in screens:
     screenManager.add_widget(screen)
 
-screenManager.current = "meteo"
+screenManager.current = "main"
 
 
 class MyMainApp(App):
