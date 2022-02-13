@@ -3,7 +3,7 @@ from datetime import date
 import random
 
 
-def short_term_recommandation_top(sex) :
+def short_term_recommandation_top(sex = 'm') :
     c_raw_temp = mt.get_current_raw_temp('c')
     c_precip = mt.get_current_precip()
 
@@ -34,7 +34,7 @@ def short_term_recommandation_top(sex) :
         return random.choice(possibilities_women)
 
 
-def short_term_recommandation_bottom(sex) :
+def short_term_recommandation_bottom(sex = 'm') :
     c_raw_temp = mt.get_current_raw_temp('c')
 
     possibilities_men = []
@@ -58,7 +58,7 @@ def short_term_recommandation_bottom(sex) :
         return random.choice(possibilities_women)
 
 
-def short_term_recommandation_footwear(sex) :
+def short_term_recommandation_footwear(sex = 'm') :
     c_raw_temp = mt.get_current_raw_temp('c')
 
     possibilities_men = []
