@@ -88,10 +88,15 @@ class FullMeteoPage(Screen):
 class FullOutfitPage(Screen):
     dateToday = str(datetime.date.today())
     dateTomorrow = str(datetime.date.today() + datetime.timedelta(days = 1))
-    __icon__ = mt.get_daily_forecast_icon(dateToday)
+    #__icon__ = mt.get_daily_forecast_icon(dateToday)
     __recommended_top__ = of.short_term_recommandation_top()
-    #__recommended_bottom__ = of.short_term_recommandation_bottom('m')
-    #__recommended_footwear__ = 
+    __recommended_bottom__ = of.short_term_recommandation_bottom()
+    __recommended_footwear__ = of.short_term_recommandation_footwear()
+    __recommended_accessory__ = of.short_term_recommandation_accessory()
+    __icon_top__ = of.get_clothing_icon(__recommended_top__)
+    __icon_bottom__ = of.get_clothing_icon(__recommended_bottom__)
+    __icon_footwear__ = of.get_clothing_icon(__recommended_footwear__)
+    __icon_accessory__ = of.get_clothing_icon(__recommended_accessory__)
 
 
 
@@ -104,8 +109,8 @@ class FullOutfitPage(Screen):
     def meteoBtn(self):
         screenManager.current = "meteo"
 
-    def build(self):
-        Window.clearcolor(1,1,1,1)
+    #def build(self):
+       # Window.clearcolor(1,1,1,1)
 
     
    # def on_enter(self):

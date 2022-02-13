@@ -199,7 +199,13 @@
 
 
 <FullOutfitPage>:
-
+    canvas.before:
+        Color: 
+            rgba: (120/240,120/240,120/240,0.9)
+        Rectangle:
+            pos : self.pos
+            size: self.size
+            
     GridLayout:
         
         GridLayout:
@@ -238,31 +244,71 @@
             pos: 0,(root.height/6.66)
 
             Label:
-                text: "Recommended top : "
+                text: "Recommended top : " + root.__recommended_top__
                 font_size: (self.width  + self.height ) / 30
 
             Label:
-                text: "2 : "
+                text: "Recommended bottom : " + root.__recommended_bottom__
                 font_size: (self.width  + self.height ) / 30
             
             Label:
-                text: "3 : "
+                text: "Recommended footwear : " + root.__recommended_footwear__
                 font_size: (self.width  + self.height ) / 30
             
             Label:
-                text: "4 : "
+                text: "Recommended accessory : " + root.__recommended_accessory__
                 font_size: (self.width  + self.height ) / 30
 
-        #BoxLayout:
-            #orientation: "vertical"
-            #size: root.width, root.height,
+        BoxLayout:
+            orientation: "vertical"
+            size: (root.width/2), (root.height/2)
+            pos : (root.width/2.1), (root.height/1.5)
 
-            #pos_hint: {"x":0.1, "y":0.8}
+            pos_hint: {"x":0.7, "y":0.6}
             #size_hint: 0.35, 0.15
+            size_hint: 0.5, 0.5
 
-            #Image:
-                #source: root.__icon__
-                #keep_ratio: True
+            Image:
+                source: root.__icon_top__
+                keep_ratio: True
+
+        BoxLayout:
+            orientation: "vertical"
+            size: (root.width/2), (root.height/2)
+            pos : (root.width/2.1), (root.height/2.2)
+
+            pos_hint: {"x":0.7, "y":0.6}
+            #size_hint: 0.35, 0.15
+            size_hint: 0.5, 0.5
+            Image:
+                source: root.__icon_bottom__
+                keep_ratio: True
+
+        BoxLayout:
+            orientation: "vertical"
+            size: (root.width/2), (root.height/2)
+            pos : (root.width/2.1), (root.height/4.4)
+
+            pos_hint: {"x":0.7, "y":0.6}
+            #size_hint: 0.35, 0.15
+            size_hint: 0.5, 0.5
+            Image:
+                source: root.__icon_footwear__
+                keep_ratio: True
+
+        BoxLayout:
+            orientation: "vertical"
+            size: (root.width/2), (root.height/2)
+            pos : (root.width/2.1), (root.height/40)
+
+            pos_hint: {"x":0.7, "y":0.6}
+            #size_hint: 0.35, 0.15
+            size_hint: 0.5, 0.5
+            Image:
+                source: root.__icon_accessory__
+                keep_ratio: True
+
+
 
 
 
