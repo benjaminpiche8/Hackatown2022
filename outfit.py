@@ -3,7 +3,7 @@ from datetime import date
 import random
 
 def get_clothing_icon(item) : # string parameter with a clothing item
-    return 'icons_clothes/' + str(item)
+    return 'icons_clothes/' + str(item) + '.png'
 
 def short_term_recommandation_top(sex = 'm') :
     c_raw_temp = mt.get_current_raw_temp('c')
