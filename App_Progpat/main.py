@@ -3,8 +3,11 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
+from kivy.properties import StringProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+import datetime 
+
 from kivy.uix.image import Image
 from kivy.core.window import Window
 #from codefinaltim.App_Progpat.database import DataBase # USEFUL FOR DATABASE **************************************
@@ -17,6 +20,7 @@ import meteo as mt
 
 #WINDOW  SUR  LA PAGE PRINCIPALE
 class HomePage(Screen):  #self.reset() may be important
+    
     def settingsBtn(self):
         screenManager.current = "settings"    
 
@@ -38,8 +42,27 @@ class SettingsPage(Screen):
     def outfitBtn(self):
         screenManager.current = "outfit"  
 
+
 #WINDOW SUR LA PAGE DE MÉTÉO COMPLÈTE
 class FullMeteoPage(Screen):
+
+    dateToday = str(datetime.date.today())
+    dateTomorrow = str(datetime.date.today() + datetime.timedelta(days = 1))
+
+    condLetter = mt.get_current_condition()
+    condTodMin =  str(mt.get_daily_forecast_raw_temp('c','min', dateToday))
+    condTodMax =  str(mt.get_daily_forecast_raw_temp('c','max', dateToday))
+    condIcon = mt.get_daily_forecast_icon(dateToday)
+    CondLive = mt.get_current_feelslike_temp('c')
+
+    condTomMin = str(mt.get_daily_forecast_raw_temp('c','min', dateTomorrow ))
+    condTomMax = str(mt.get_daily_forecast_raw_temp('c','max', dateTomorrow ))
+
+    rain = mt.will_it_rain(dateToday)
+    snow = mt.will_it_snow(dateToday)
+  
+
+
     def homeBtn(self):
         screenManager.current = "main"
 
@@ -48,6 +71,7 @@ class FullMeteoPage(Screen):
     
     def outfitBtn(self):
         screenManager.current = "outfit"  
+
 
 #WINDOW SUR LA PAGE DE OUTFIT
 class FullOutfitPage(Screen):
@@ -59,6 +83,7 @@ class FullOutfitPage(Screen):
 
     def meteoBtn(self):
         screenManager.current = "meteo"
+
     def build(self):
         Window.clearcolor(1,1,1,1)
 
